@@ -13,13 +13,28 @@
 #include <boost/bind.hpp>
 
 namespace {
+	// can be loaded from a file or other ressource
 	const char* LuaLogicScript =
 		"print([[initialized LuaLogicScript]]);"
 		"lower_limit=0;"
 		"upper_limit=4;"
 		"counter=lower_limit;"
-		"function Increment() if counter<upper_limit then counter=counter+getIncrement(); Updated() else Alert([[Upper limit of ]]..upper_limit..[[ reached]]) end end;"
-		"function Decrement() if counter>lower_limit then counter=counter-getIncrement(); Updated() else Alert([[Lower limit of ]]..lower_limit..[[ reached]]) end end;"
+		""////////////////////
+		"function Increment()"
+		" if counter<upper_limit then "
+		"  counter=counter+getIncrement(); Updated() "
+		" else "
+		"  Alert([[Upper limit of ]]..upper_limit..[[ reached]]) "
+		" end "
+		"end;"
+		""////////////////////
+		"function Decrement() "
+		" if counter>lower_limit then "
+		"  counter=counter-getIncrement(); Updated() "
+		" else "
+		"  Alert([[Lower limit of ]]..lower_limit..[[ reached]]) "
+		" end "
+		"end;"
 		;
 }
 
