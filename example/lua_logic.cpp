@@ -54,9 +54,9 @@ namespace lul {
 	public:
 		virtual void ProcessEvent(std::string const& name) {
 			if (name=="Increment")
-				luabind::call_function<void>(L, "Increment", name);
+				luabind::call_function<void>(L, "Increment");
 			else if (name=="Decrement")
-				luabind::call_function<void>(L, "Decrement", name);
+				luabind::call_function<void>(L, "Decrement");
 			else
 				luabind::call_function<void>(L, "UnknownEvent", name);
 		}
