@@ -1,0 +1,3 @@
+[submodule "wallaroo"]
+	path = wallaroo
+	url = https://code.google.com/p/wallaroo/
