@@ -34,17 +34,23 @@ int _tmain(int argc, _TCHAR* argv[])
 		use("LuaCounterLogic").as("logic").of("MainUI");
 		use("MainUI").as("view").of("LuaCounterLogic");
 	}
+	
+	//send some events
 	MainUI->ReceiveEvent("test");
+	
 	MainUI->ReceiveEvent("Increment");
 	MainUI->ReceiveEvent("Increment");
 	MainUI->ReceiveEvent("Increment");
 	MainUI->ReceiveEvent("Increment");
+	
 	MainUI->ReceiveEvent("Increment");
 	MainUI->ReceiveEvent("Increment");
+	
 	MainUI->ReceiveEvent("Decrement");
 	MainUI->ReceiveEvent("Decrement");
 	MainUI->ReceiveEvent("Decrement");
 	MainUI->ReceiveEvent("Decrement");
+	
 	MainUI->ReceiveEvent("Decrement");
 	MainUI->ReceiveEvent("Decrement");
 	
