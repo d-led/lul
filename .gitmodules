@@ -1,3 +1,6 @@
 [submodule "wallaroo"]
 	path = wallaroo
 	url = https://code.google.com/p/wallaroo/
+[submodule "luabind"]
+	path = luabind
+	url = git://github.com/luabind/luabind.git

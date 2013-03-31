@@ -6,6 +6,8 @@
 #include "wallaroo/catalog.h"
 #include "wallaroo/registered.h"
 
+#include <lua.hpp>
+
 namespace lul {
 
 	class LuaCounterLogic : public lul::iui::ILogic {
@@ -17,6 +19,14 @@ namespace lul {
 	public:
 		virtual void ProcessEvent(std::string const& name) {
 			std::cout<<"LuaCounterLogic received event: "<<name<<std::endl;
+		}
+
+		virtual void Configure() {
+		}
+
+	//private:
+		void UnknownEvent(std::string name) {
+			std::cout<<"Unknown event: "<<name<<std::endl;
 		}
 	};
 
