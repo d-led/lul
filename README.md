@@ -9,3 +9,5 @@ and the dependency injection using [wallaroo](https://code.google.com/p/wallaroo
 Use at your own risk.
 
 The explanation will follow shortly.
+
+Author: Dmitry Ledentsov
