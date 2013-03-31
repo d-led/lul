@@ -8,20 +8,40 @@
 
 #include <lua.hpp>
 
-namespace lul {
+#include <luabind/luabind.hpp>
+#include <luabind/tag_function.hpp>
+#include <boost/bind.hpp>
 
+int f(int x, int y)
+{
+    return x + y;
+}
+
+namespace lul {
 	class LuaCounterLogic : public lul::iui::ILogic {
+	lua_State *L;
+	wallaroo::Plug<lul::iui::IView> view;
 	public:
-		LuaCounterLogic() {
+		LuaCounterLogic():
+			view( "view", RegistrationToken() ),
+			L(lua_open())
+		{
+			using namespace luabind;
+			module(L) [
+				def("UnknownEvent", tag_function<void(std::string)>(boost::bind(&LuaCounterLogic::UnknownEvent,this,_1)))
+			];
+
 			std::cout<<"Created LuaCounterLogic"<<std::endl;
+		}
+
+		virtual ~LuaCounterLogic() {
+			lua_close(L);
+			L=0;
 		}
 
 	public:
 		virtual void ProcessEvent(std::string const& name) {
 			std::cout<<"LuaCounterLogic received event: "<<name<<std::endl;
-		}
-
-		virtual void Configure() {
 		}
 
 	//private:

@@ -32,6 +32,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	wallaroo_within(catalog)
 	{
 		use("LuaCounterLogic").as("logic").of("MainUI");
+		use("MainUI").as("view").of("LuaCounterLogic");
 	}
 	MainUI->ReceiveEvent("test");
 
