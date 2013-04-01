@@ -21,12 +21,11 @@ namespace generated {
 		"function ProcessEvent(name)\n"
 		"	if name=='Decrement' then\n"
 		"		Decrement()\n"
-		"	else if name=='Increment' then\n"
+		"	elseif name=='Increment' then\n"
 		"		Increment()\n"
 		"	else\n"
 		"		UnknownEvent()\n"
 		"	end\n"
-		"end\n"
 		"end\n"
 		  ;
  }

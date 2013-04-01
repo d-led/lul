@@ -21,10 +21,9 @@ end
 function ProcessEvent(name)
 	if name=='Decrement' then
 		Decrement()
-	else if name=='Increment' then
+	elseif name=='Increment' then
 		Increment()
 	else
 		UnknownEvent()
 	end
-end
 end
