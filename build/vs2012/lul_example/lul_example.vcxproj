@@ -104,7 +104,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\example\context.lua" />
+    <CustomBuild Include="..\..\..\example\context.lua">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd %(RelativeDir)
+lua compile.lua</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">context.inl</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd %(RelativeDir)
+lua compile.lua</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">context.inl</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</TreatOutputAsContent>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</TreatOutputAsContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+    </CustomBuild>
+    <None Include="..\..\..\example\compile.lua" />
     <None Include="..\..\..\example\test\luacontexttest.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

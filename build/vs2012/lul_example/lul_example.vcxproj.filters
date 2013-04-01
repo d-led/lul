@@ -73,11 +73,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\example\context.lua">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="..\..\..\example\test\luacontexttest.lua">
       <Filter>test</Filter>
     </None>
+    <None Include="..\..\..\example\compile.lua">
+      <Filter>test</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\example\context.lua">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

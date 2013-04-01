@@ -11,6 +11,8 @@
 #include <luabind/tag_function.hpp>
 #include <boost/bind.hpp>
 
+#include "context.inl"
+
 namespace lul {
 
 	class SomeLuaContext : public lul::iui::ILuaContext {
@@ -46,8 +48,9 @@ namespace lul {
 					.def_readwrite("state",&Context::state)
 				];
 			luabind::globals(L)["context"]=&context;
-			// should be made safer
-			luaL_dofile(L,"context.lua");
+
+			std::string compiled=generated::Context();
+			luaL_dostring(L,compiled.c_str());
 		}
 
 	private:
