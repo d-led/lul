@@ -36,6 +36,7 @@ namespace lul {
 
 		virtual void Configure() {
 			using namespace luabind;
+			//can be reduced to minimum
 			luaL_openlibs(L);
 			module(L) [
 				def("UnknownEvent", tag_function<void(std::string)>(boost::bind(&LuaLogic::UnknownEvent,this,_1))),
@@ -47,6 +48,7 @@ namespace lul {
 		}
 
 		virtual void ProcessEvent(std::string const& name) {
+			// quite unsafe
 			std::string call=std::string("ProcessEvent[====[")+name+("]====];");
 			luaL_dostring(L,call.c_str());
 		}
