@@ -78,6 +78,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\example\iluacontext.h" />
+    <ClInclude Include="..\..\..\example\lua_context.h" />
     <ClInclude Include="..\..\..\example\lua_logic.h" />
     <ClInclude Include="..\..\..\example\some_logic.h" />
     <ClInclude Include="..\..\..\example\some_ui.h" />
@@ -86,6 +88,7 @@
     <ClInclude Include="..\..\..\lul\iui.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\example\lua_context.cpp" />
     <ClCompile Include="..\..\..\example\lua_logic.cpp" />
     <ClCompile Include="..\..\..\example\lul_example.cpp" />
     <ClCompile Include="..\..\..\example\some_logic.cpp" />
@@ -99,6 +102,9 @@
     <ProjectReference Include="..\luabind\luabind\luabind.vcxproj">
       <Project>{edd589a3-8a33-4c3c-a075-07cdd72b9421}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\example\context.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

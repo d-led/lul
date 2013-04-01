@@ -15,6 +15,9 @@ namespace lul {
 		}
 
 	public:
+
+		virtual void Configure(){}
+
 		virtual void ProcessEvent(std::string const& name) {
 			std::cout<<"SomeUILogic received event: "<<name<<std::endl;
 		}

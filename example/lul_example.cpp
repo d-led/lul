@@ -7,6 +7,7 @@
 #include "some_logic.h"
 #include "some_ui.h"
 #include "lua_logic.h"
+#include "lua_context.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -28,13 +29,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	MainUI->ReceiveEvent("test");
 
 	lul::CreateLuaLogic("LuaCounterLogic",catalog);
+	lul::CreateLuaContext("LuaCounterContext",catalog);
 	// change the logic plug
 	wallaroo_within(catalog)
 	{
 		use("LuaCounterLogic").as("logic").of("MainUI");
 		use("MainUI").as("view").of("LuaCounterLogic");
+		use("LuaCounterContext").as("context").of("LuaCounterLogic");
 	}
 	
+	//configure
+	std::shared_ptr<lul::iui::ILogic> LuaCounterLogic = catalog["LuaCounterLogic"];
+	LuaCounterLogic->Configure();
+
 	//send some events
 	MainUI->ReceiveEvent("test");
 	

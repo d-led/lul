@@ -10,6 +10,7 @@ namespace lul {
 	namespace iui {
 
 		struct ILogic : public wallaroo::Device {
+			virtual void Configure()=0;
 			virtual void ProcessEvent(std::string const& name)=0;
 			virtual ~ILogic(){}
 		};

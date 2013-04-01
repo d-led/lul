@@ -3,77 +3,52 @@
 #include "lua_logic.h"
 
 #include "..\lul\iui.h"
+#include "iluacontext.h"
+
 #include "wallaroo/catalog.h"
 #include "wallaroo/registered.h"
 
 #include <lua.hpp>
-
 #include <luabind/luabind.hpp>
 #include <luabind/tag_function.hpp>
 #include <boost/bind.hpp>
 
-namespace {
-	// can be loaded from a file or other ressource
-	const char* LuaLogicScript =
-		"print([[initialized LuaLogicScript]]);"
-		"lower_limit=0;"
-		"upper_limit=4;"
-		"counter=lower_limit;"
-		""////////////////////
-		"function Increment()"
-		" if counter<upper_limit then "
-		"  counter=counter+getIncrement(); Updated() "
-		" else "
-		"  Alert([[Upper limit of ]]..upper_limit..[[ reached]]) "
-		" end "
-		"end;"
-		""////////////////////
-		"function Decrement() "
-		" if counter>lower_limit then "
-		"  counter=counter-getIncrement(); Updated() "
-		" else "
-		"  Alert([[Lower limit of ]]..lower_limit..[[ reached]]) "
-		" end "
-		"end;"
-		;
-}
-
 namespace lul {
-	class LuaCounterLogic : public lul::iui::ILogic {
+	class LuaLogic : public lul::iui::ILogic {
 		lua_State *L;
 		wallaroo::Plug<lul::iui::IView> view;
-		int increment;
+		wallaroo::Plug<lul::iui::ILuaContext> context;
 	public:
-		LuaCounterLogic():
+		LuaLogic():
 			view("view",RegistrationToken()),
-			L(lua_open()),
-			increment(1)
+			context("context",RegistrationToken()),
+			L(lua_open())
 		{
-			using namespace luabind;
-			luaL_openlibs(L);
-			module(L) [
-				def("UnknownEvent", tag_function<void(std::string)>(boost::bind(&LuaCounterLogic::UnknownEvent,this,_1))),
-				def("Alert", tag_function<void(std::string)>(boost::bind(&LuaCounterLogic::Alert,this,_1))),
-				def("Updated", tag_function<void()>(boost::bind(&LuaCounterLogic::Updated,this))),
-				def("getIncrement", tag_function<int()>(boost::bind(&LuaCounterLogic::getIncrement,this)))
-			];
-			luaL_dostring(L,LuaLogicScript);
-			std::cout<<"Created LuaCounterLogic"<<std::endl;
+			std::cout<<"Created LuaLogic"<<std::endl;
 		}
 
-		virtual ~LuaCounterLogic() {
+		virtual ~LuaLogic() {
 			lua_close(L);
 			L=0;
 		}
 
 	public:
+
+		virtual void Configure() {
+			using namespace luabind;
+			luaL_openlibs(L);
+			module(L) [
+				def("UnknownEvent", tag_function<void(std::string)>(boost::bind(&LuaLogic::UnknownEvent,this,_1))),
+				def("Alert", tag_function<void(std::string)>(boost::bind(&LuaLogic::Alert,this,_1))),
+				def("Updated", tag_function<void(std::string,std::string)>(boost::bind(&LuaLogic::Updated,this,_1,_2)))
+			];
+			if (context)
+				context->Register(L);
+		}
+
 		virtual void ProcessEvent(std::string const& name) {
-			if (name=="Increment")
-				luabind::call_function<void>(L, "Increment");
-			else if (name=="Decrement")
-				luabind::call_function<void>(L, "Decrement");
-			else
-				luabind::call_function<void>(L, "UnknownEvent", name);
+			std::string call=std::string("ProcessEvent[====[")+name+("]====];");
+			luaL_dostring(L,call.c_str());
 		}
 
 	private:
@@ -86,27 +61,16 @@ namespace lul {
 				view->Alert(message);
 		}
 
-		void Updated() const {
+		void Updated(std::string key,std::string value) const {
 			if (view)
-				view->ShowValue("counter",CounterValue());
-		}
-
-		std::string CounterValue() const {
-			std::stringstream s;
-			int count=luabind::object_cast<int>(luabind::globals(L)["counter"]);
-			s<<count;
-			return s.str();
-		}
-
-		int getIncrement() const {
-			return increment;
+				view->ShowValue(key,value);
 		}
 	};
 
-	WALLAROO_REGISTER( LuaCounterLogic );
+	WALLAROO_REGISTER( LuaLogic );
 
 	void CreateLuaLogic(std::string const& name,wallaroo::Catalog& catalog)
 	{
-		catalog.Create(name, "LuaCounterLogic");
+		catalog.Create(name, "LuaLogic");
 	}
 }

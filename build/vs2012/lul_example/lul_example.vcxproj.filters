@@ -42,6 +42,12 @@
     <ClInclude Include="..\..\..\example\some_ui.h">
       <Filter>Header Files\implementations</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\example\iluacontext.h">
+      <Filter>Header Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\example\lua_context.h">
+      <Filter>Header Files\implementations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\example\lul_example.cpp">
@@ -59,5 +65,13 @@
     <ClCompile Include="..\..\..\example\some_ui.cpp">
       <Filter>Source Files\implementations</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\example\lua_context.cpp">
+      <Filter>Source Files\implementations</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\example\context.lua">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
