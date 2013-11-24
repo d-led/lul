@@ -3,7 +3,9 @@
 - [lul](#lul)
 - [Walkthrough](#walkthrough)
 	- [Dependency inversion](#dependency-inversion)
-	- [License](#license)
+	- [Reconfiguring the instances](#reconfiguring-the-instances)
+	- [LuaCounterLogic](#luacounterlogic)
+- [License](#license)
 
 lul
 ===
@@ -89,6 +91,7 @@ The logic component implemented in Lua just as an example. The Lua script _text_
 
 The logic component exposes only three functions to the Lua state: `UnknownEvent`, `Alert` and `Updated` that are conveniently bound to the logic instance using LuaBind:
 
+```cpp
 luaL_openlibs(L);
 module(L) [
 	def("UnknownEvent",
@@ -97,6 +100,7 @@ module(L) [
 		)),
 	//...
 ];
+```
 
 License
 =======
