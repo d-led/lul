@@ -2,7 +2,7 @@
 
 #include "some_ui.h"
 
-#include "..\lul\iui.h"
+#include "../lul/iui.h"
 #include "wallaroo/catalog.h"
 #include "wallaroo/registered.h"
 

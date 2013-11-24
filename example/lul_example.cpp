@@ -2,14 +2,14 @@
 //
 
 #include "stdafx.h"
-#include "..\lul\iui.h"
+#include "../lul/iui.h"
 #include "wallaroo/catalog.h"
 #include "some_logic.h"
 #include "some_ui.h"
 #include "lua_logic.h"
 #include "lua_context.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	using namespace wallaroo;
 

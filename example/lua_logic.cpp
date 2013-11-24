@@ -2,7 +2,7 @@
 
 #include "lua_logic.h"
 
-#include "..\lul\iui.h"
+#include "../lul/iui.h"
 #include "iluacontext.h"
 
 #include "wallaroo/catalog.h"
