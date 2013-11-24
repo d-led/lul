@@ -1,11 +1,9 @@
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
-
 - [lul](#lul)
-- [Walkthrough](#walkthrough)
+- [walkthrough](#walkthrough)
 	- [Dependency inversion](#dependency-inversion)
-	- [Reconfiguring the instances](#reconfiguring-the-instances)
+	- [reconfiguring the instances](#reconfiguring-the-instances)
 	- [LuaCounterLogic](#luacounterlogic)
-- [License](#license)
+- [license](#license)
 
 lul
 ===
@@ -15,7 +13,7 @@ This project shows an example of using lua as a scriptable ui logic component.
 The binding is done via [luabind](http://www.rasterbar.com/products/luabind/docs.html)
 and the dependency injection using [wallaroo](https://code.google.com/p/wallaroo/).
 
-Walkthrough
+walkthrough
 ===========
 
 Dependency inversion
@@ -66,7 +64,7 @@ MainUI->ReceiveEvent("test");
 
 the UI forwards the call to it's logic meber that echoes `SomeUILogic received event: test`.
 
-Reconfiguring the instances
+reconfiguring the instances
 ---------------------------
 
 The main strength of Wallaroo is perhaps the ability to reconfigure the dependency resolutions at runtime. Thus, calling
@@ -102,7 +100,9 @@ module(L) [
 ];
 ```
 
-License
+
+
+license
 =======
 
 No specific license is attached. Use at your own risk.
