@@ -100,7 +100,41 @@ module(L) [
 ];
 ```
 
+The events from the outside are forwarded to the state machine actions implementation, which is defined in [context.lua](example/context.lua).
 
+the whole picture again
+-----------------------
+
+Coming back to the UI: the example program consists of a chain of calls to the `ReceiveEvent` method of the UI, simulating external input events. These are forwarded exactly to the logic, as the primary concern of the UI might be presentation solely.
+
+Since the state machine is implemented in Lua, lua functions for the named actions are called if the event name is present. These, in turn, evaluate the state of the state machine, which is implemented in C++ and is bound to the Lua state.
+
+During the action, the script calls some functions that report the update back to the UI. I.e. `Updated` and `Alert`:
+
+```lua
+function Increment()
+	if context.state < context.upper_limit then
+		context.state = context.state+context.increment;
+		Updated( 'counter' , tostring(context.state) )
+	else
+		Alert( [[Upper limit of ]] .. context.upper_limit .. [[ reached]] )
+	end
+end
+```
+
+These updates are then forwarded back to the UI via the `IView` interface:
+
+```cpp
+void Updated(std::string key,std::string value) const {
+	if (view)
+		view->ShowValue(key,value);
+}
+```
+
+decoupling strategy and flexibility
+-----------------------------------
+
+This example is not intended as a recipe for implementing UIs with logic and state. It rathe tries to demonstrate that, given independent components, you are much more free to restructure and reimplement your software architecture. For example, as in this example, having a state in C++ is not really needed need. To move that concern to the Lua side would be very simple - delete the binding and define one Lua table with number values in the script. There's no message passing strategy involved in the example, but incorporating it should not be a huge refactoring, since the interfaces are rather lean and mimic message passing.
 
 license
 =======
