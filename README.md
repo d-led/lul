@@ -1,10 +1,3 @@
-- [lul](#lul)
-- [walkthrough](#walkthrough)
-	- [Dependency inversion](#dependency-inversion)
-	- [reconfiguring the instances](#reconfiguring-the-instances)
-	- [LuaCounterLogic](#luacounterlogic)
-- [license](#license)
-
 lul
 ===
 
@@ -12,6 +5,14 @@ This project shows an example of using lua as a scriptable ui logic component.
 
 The binding is done via [luabind](http://www.rasterbar.com/products/luabind/docs.html)
 and the dependency injection using [wallaroo](https://code.google.com/p/wallaroo/).
+
+- [walkthrough](#walkthrough)
+	- [Dependency inversion](#dependency-inversion)
+	- [reconfiguring the instances](#reconfiguring-the-instances)
+	- [LuaCounterLogic](#luacounterlogic)
+	- [the whole picture again](#the-whole-picture-again)
+	- [decoupling strategy and flexibility](#decoupling-strategy-and-flexibility)
+- [license](#license)
 
 walkthrough
 ===========
