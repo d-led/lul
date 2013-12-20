@@ -59,7 +59,7 @@ All objects are specified by their name, so you need discipline, error handling 
 Using the interface instances
 
 ```cpp
-auto MainUI = catalog["MainUI"];
+std::shared_ptr<IView> MainUI = catalog["MainUI"];
 MainUI->ReceiveEvent("test");
 ```
 
