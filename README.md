@@ -135,7 +135,7 @@ void Updated(std::string key,std::string value) const {
 decoupling strategy and flexibility
 -----------------------------------
 
-This example is not intended as a recipe for implementing UIs with logic and state. It rathe tries to demonstrate that, given independent components, you are much more free to restructure and reimplement your software architecture. For example, as in this example, having a state in C++ is not really needed need. To move that concern to the Lua side would be very simple - delete the binding and define one Lua table with number values in the script. There's no message passing strategy involved in the example, but incorporating it should not be a huge refactoring, since the interfaces are rather lean and mimic message passing.
+This example is not intended as a recipe for implementing UIs with logic and state. It rather tries to demonstrate that, given independent components, you are much more free to restructure and reimplement your software architecture. For example, as in this example, having a state in C++ is not really needed need. To move that concern to the Lua side would be very simple - delete the binding and define one Lua table with number values in the script. There's no message passing strategy involved in the example, but incorporating it should not be a huge refactoring, since the interfaces are rather lean and mimic message passing.
 
 license
 =======
